@@ -58,6 +58,7 @@ const slideAndMultiply = (row) => {
         row.push(0);
     } // [4, 2, 0, 0]
 
+    document.getElementById('score').innerText = score;
     return row;
 };
 
@@ -89,6 +90,19 @@ const slideRight = () => {
     }
 };
 
+const slideUp = () => {
+    for (let c = 0; c < columns; c++) {
+        let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
+        row = slideAndMultiply(row);
+        for (let r = 0; r < rows; r++) {
+            board[r][c] = row[r];
+            let tile = document.getElementById(r.toString() + '-' + c.toString());
+            let num = board[r][c];
+            updateTile(tile, num);
+        }
+    }
+};
+
 // Events
 document.addEventListener('keyup', (e) => {
     if (e.key === 'ArrowLeft') {
@@ -96,5 +110,8 @@ document.addEventListener('keyup', (e) => {
     }
     if (e.key === 'ArrowRight') {
         slideRight();
+    }
+    if (e.key === 'ArrowUp') {
+        slideUp();
     }
 });
