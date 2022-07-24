@@ -53,6 +53,7 @@ main header {
     align-items: center;
     justify-content: center;
     background-color: #bbada0;
+    transition: background-color 0.4s ease;
 }
 
 .x2 {

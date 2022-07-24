@@ -41,7 +41,7 @@ const updateTile = (tile, num) => {
     }
 };
 
-const slide = (row) => {
+const slideAndMultiply = (row) => {
     row = row.filter(num => num !== 0);
 
     for (let i = 0; i < row.length - 1; i++) {
@@ -64,7 +64,7 @@ const slide = (row) => {
 const slideLeft = () => {
     for (let r = 0; r < rows; r++) {
         let row = board[r];
-        row = slide(row);
+        row = slideAndMultiply(row);
         board[r] = row;
         for (let c = 0; c < columns; c++) {
             let tile = document.getElementById(r.toString() + '-' + c.toString());
