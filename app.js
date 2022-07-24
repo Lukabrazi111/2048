@@ -103,6 +103,21 @@ const slideUp = () => {
     }
 };
 
+const slideDown = () => {
+    for (let c = 0; c < columns; c++) {
+        let row = [board[0][c], board[1][c], board[2][c], board[3][c]];
+        row.reverse();
+        row = slideAndMultiply(row);
+        row.reverse();
+        for (let r = 0; r < rows; r++) {
+            board[r][c] = row[r];
+            let tile = document.getElementById(r.toString() + '-' + c.toString());
+            let num = board[r][c];
+            updateTile(tile, num);
+        }
+    }
+};
+
 // Events
 document.addEventListener('keyup', (e) => {
     if (e.key === 'ArrowLeft') {
@@ -113,5 +128,8 @@ document.addEventListener('keyup', (e) => {
     }
     if (e.key === 'ArrowUp') {
         slideUp();
+    }
+    if (e.key === 'ArrowDown') {
+        slideDown();
     }
 });
