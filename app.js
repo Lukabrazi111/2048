@@ -74,9 +74,27 @@ const slideLeft = () => {
     }
 };
 
+const slideRight = () => {
+    for (let r = 0; r < rows; r++) {
+        let row = board[r];
+        row.reverse();
+        row = slideAndMultiply(row);
+        row.reverse();
+        board[r] = row;
+        for (let c = 0; c < columns; c++) {
+            let tile = document.getElementById(r.toString() + '-' + c.toString());
+            let num = board[r][c];
+            updateTile(tile, num);
+        }
+    }
+};
+
 // Events
 document.addEventListener('keyup', (e) => {
     if (e.key === 'ArrowLeft') {
         slideLeft();
+    }
+    if (e.key === 'ArrowRight') {
+        slideRight();
     }
 });
